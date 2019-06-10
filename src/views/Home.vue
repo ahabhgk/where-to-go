@@ -2,7 +2,7 @@
   <div class="home">
     <Header />
     <Carousel />
-    <Icons />
+    <!-- <Icons /> -->
   </div>
 </template>
 

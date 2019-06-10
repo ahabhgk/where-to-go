@@ -12,10 +12,10 @@
 </template>
 
 <script>
-import imgUrl0 from '@/assets/img/fh3.jpg'
-import imgUrl1 from '@/assets/img/images.jpeg'
-import imgUrl2 from '@/assets/img/roadster-space.jpg'
-import imgUrl3 from '@/assets/img/SpaceX.png'
+import imgUrl0 from '@/assets/img/image0.jpg'
+import imgUrl1 from '@/assets/img/image1.jpg'
+import imgUrl2 from '@/assets/img/image2.jpg'
+import imgUrl3 from '@/assets/img/image3.jpg'
 
 export default {
   name: 'Carousel',
