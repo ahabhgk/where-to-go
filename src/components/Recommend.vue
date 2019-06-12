@@ -1,62 +1,29 @@
 <template>
-  <div class="rec-wrapper">
+  <div class="rec-wrapper" v-if="showRecommend">
     <div class="rec-tit">热销推荐</div>
-    <div class="rec" v-for="recommend in recommends" :key="recommend.id">
-      <img :src="recommend.recImgUrl" />
+    <div class="rec" v-for="recommend in recommendList" :key="recommend.id">
+      <img :src="recommend.imgUrl" />
       <div class="dec">
-        <div class="tit">{{ recommend.tit }}</div>
+        <div class="tit">{{ recommend.title }}</div>
         <p class="desc">{{ recommend.desc }}</p>
-        <span class="money"><span class="moneySign">¥</span>{{ recommend.money }}<span class="qi">起</span></span>
+        <span class="money"><span class="moneySign">¥</span>99<span class="qi">起</span></span>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import recImgUrl0 from '@/assets/img/recImgUrl0.jpg'
-
 export default {
   name: 'Recommend',
-  data() {
-    return {
-      recommends: [
-        {
-          id: 0,
-          recImgUrl: recImgUrl0,
-          tit: '大连圣亚海洋世界',
-          desc: '浪漫大连首站，浪漫的海洋世界。',
-          money: 99,
-        },
-        {
-          id: 1,
-          recImgUrl: recImgUrl0,
-          tit: '大连圣亚海洋世界',
-          desc: '浪漫大连首站，浪漫的海洋世界。',
-          money: 99,
-        },
-        {
-          id: 2,
-          recImgUrl: recImgUrl0,
-          tit: '大连圣亚海洋世界',
-          desc: '浪漫大连首站，浪漫的海洋世界。',
-          money: 99,
-        },
-        {
-          id: 3,
-          recImgUrl: recImgUrl0,
-          tit: '大连圣亚海洋世界',
-          desc: '浪漫大连首站，浪漫的海洋世界。',
-          money: 99,
-        },
-        {
-          id: 4,
-          recImgUrl: recImgUrl0,
-          tit: '大连圣亚海洋世界',
-          desc: '浪漫大连首站，浪漫的海洋世界。',
-          money: 99,
-        },
-      ],
-    }
+  
+  props: {
+    recommendList: Array,
+  },
+
+  computed: {
+    showRecommend() {
+      return this.recommendList.length
+    },
   },
 }
 </script>

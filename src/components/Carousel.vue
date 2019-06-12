@@ -1,8 +1,8 @@
 <template>
   <div class="wrapper">
-    <swiper :options="swiperOption">
+    <swiper :options="swiperOption" v-if="showCarousel">
       <!-- slides -->
-      <swiper-slide v-for="item in swiperList" :key="item.id">
+      <swiper-slide v-for="item in carouselList" :key="item.id">
         <img :src="item.imgUrl" />
       </swiper-slide>
       <!-- Optional controls -->
@@ -12,40 +12,29 @@
 </template>
 
 <script>
-import imgUrl0 from '@/assets/img/image0.jpg'
-import imgUrl1 from '@/assets/img/image1.jpg'
-import imgUrl2 from '@/assets/img/image2.jpg'
-import imgUrl3 from '@/assets/img/image3.jpg'
-
 export default {
   name: 'Carousel',
+  
+  props: {
+    carouselList: Array,
+  },
+
   data() {
     return {
       swiperOption: {
+        loop: true,
+        autoplay: true,
         pagination: {
           el: '.swiper-pagination',
         },
-        loop: true,
       },
-      swiperList: [
-        {
-          id: 0,
-          imgUrl: imgUrl0,
-        },
-        {
-          id: 1,
-          imgUrl: imgUrl1,
-        },
-        {
-          id: 2,
-          imgUrl: imgUrl2,
-        },
-        {
-          id: 3,
-          imgUrl: imgUrl3,
-        },
-      ],
     }
+  },
+
+  computed: {
+    showCarousel() {
+      return this.carouselList.length
+    },
   },
 }
 </script>
