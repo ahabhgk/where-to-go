@@ -1,16 +1,16 @@
 <template>
   <ul>
-    <li>A</li>
-    <li>A</li>
-    <li>A</li>
-    <li>A</li>
-    <li>A</li>
+    <li v-for="(city, key) in cities" :key="key">{{ key }}</li>
   </ul>
 </template>
 
 <script>
 export default {
   name: 'Alphabet',
+
+  props: {
+    cities: Object,
+  },
 }
 </script>
 
@@ -25,6 +25,7 @@ ul {
   justify-content: center;
   padding-right: 1vw;
   li {
+    text-align: center;
     list-style: none;
   }
 }

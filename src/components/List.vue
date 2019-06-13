@@ -2,45 +2,16 @@
   <div class="list-wrap" ref="wrapper">
     <div class="list">
       <div class="area">
-        <div class="tit">当前城市</div>
-        <div class="citys">
-          <div class="city">背景</div>
-        </div>
-      </div>
-      <div class="area">
         <div class="tit">热门城市</div>
         <div class="citys">
-          <div class="city">背景</div>
-          <div class="city">背景</div>
-          <div class="city">背景</div>
-          <div class="city">背景</div>
-          <div class="city">背景</div>
-          <div class="city">背景</div>
-          <div class="city">背景</div>
+          <div class="city" v-for="hotCity in hotCities" :key="hotCity.id">
+            {{ hotCity.name }}
+          </div>
         </div>
       </div>
-      <div class="list-area">
-        <div class="tit">A</div>
-        <div class="city">背景</div>
-        <div class="city">背景</div>
-        <div class="city">背景</div>
-        <div class="city">背景</div>
-        <div class="city">背景</div>
-        <div class="city">背景</div>
-        <div class="tit">A</div>
-        <div class="city">背景</div>
-        <div class="city">背景</div>
-        <div class="city">背景</div>
-        <div class="city">背景</div>
-        <div class="city">背景</div>
-        <div class="city">背景</div>
-        <div class="tit">A</div>
-        <div class="city">背景</div>
-        <div class="city">背景</div>
-        <div class="city">背景</div>
-        <div class="city">背景</div>
-        <div class="city">背景</div>
-        <div class="city">背景</div>
+      <div class="list-area" v-for="(cityList, key) in cities" :key="key">
+        <div class="tit">{{ key }}</div>
+        <div class="city" v-for="city in cityList" :key="city.id">{{ city.name }}</div>
       </div>
     </div>
   </div>
@@ -51,6 +22,12 @@ import BScroll from 'better-scroll'
 
 export default {
   name: 'List',
+
+  props: {
+    hotCities: Array,
+    cities: Object,
+  },
+
   mounted() {
     this.scroll = new BScroll(this.$refs.wrapper)
   },
