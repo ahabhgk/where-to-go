@@ -2,8 +2,8 @@
   <div>
     <CityHeader />
     <CitySearch />
-    <CityList :hotCities="hotCities" :cities="cities" />
-    <CityAlphabet :cities="cities" />
+    <CityList :hotCities="hotCities" :cities="cities" :letter="letter" />
+    <CityAlphabet :cities="cities" @listJump="handleListJump" />
   </div>
 </template>
 
@@ -27,7 +27,8 @@ export default {
   data() {
     return {
       hotCities: [],
-      cities: {}, 
+      cities: {},
+      letter: '',
     }
   },
 
@@ -43,6 +44,10 @@ export default {
         console.log(err)
       }
     },
+
+    handleListJump(letter) {
+      this.letter = letter
+    }
   },
 
   mounted() {
