@@ -14,13 +14,13 @@ export default {
 @import '@/assets/style/variable.scss';
 
 .search {
-  height: $headerHeight;
+  height: 9.5vw;
   padding: 0 1vw;
   background: $bgColor;
   input {
-    width: 94vw;
+    width: 96vw;
     line-height: 6.5vw;
-    padding: 2vw;
+    padding: 1vw;
     border-radius: 1vw;
     font-size: 16px;
     text-align: center;
