@@ -13,6 +13,7 @@ import Header from '@/components/layout/Header.vue'
 import Carousel from '@/components/Carousel.vue'
 import Icons from '@/components/Icons.vue'
 import Recommend from '@/components/Recommend.vue'
+import { mapState } from 'vuex'
 
 export default {
   name: 'home',
@@ -26,16 +27,21 @@ export default {
 
   data() {
     return {
+      lastCity: '',
       carouselList: [],
       iconList: [],
       recommendList: [],
     }
   },
 
+  computed: {
+    ...mapState(['city']),
+  },
+
   methods: {
     async getHomeInfo() {
       try {
-        const res = await axios.get('/api/index.json')
+        const res = await axios.get(`/api/index.json?city=${this.city}`)
         const data = await res.data.data
 
         this.carouselList = data.swiperList
@@ -48,7 +54,15 @@ export default {
   },
 
   mounted() {
+    this.lastCity = this.city
     this.getHomeInfo()
+  },
+
+  activated() {
+    if (this.lastCity !== this.city) {
+      this.lastCity = this.city
+      this.getHomeInfo()
+    }
   },
 }
 </script>
