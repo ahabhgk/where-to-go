@@ -18,6 +18,11 @@ export default new Router({
       name: 'city',
       component: () => import(/* webpackChunkName: "about" */ './views/City.vue'),
     },
+    {
+      path: '/detail/:id',
+      name: 'detail',
+      component: () => import(/* webpackChunkName: "about" */ './views/Detail.vue'),
+    },
     // {
     //   path: '/about',
     //   name: 'about',

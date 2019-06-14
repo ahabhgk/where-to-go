@@ -1,14 +1,20 @@
 <template>
   <div class="rec-wrapper" v-if="showRecommend">
     <div class="rec-tit">热销推荐</div>
-    <div class="rec" v-for="recommend in recommendList" :key="recommend.id">
+    <router-link
+      class="rec"
+      v-for="recommend in recommendList"
+      :key="recommend.id"
+      tag="div"
+      :to="`/detail/${recommend.id}`"
+    >
       <img :src="recommend.imgUrl" />
       <div class="dec">
         <div class="tit">{{ recommend.title }}</div>
         <p class="desc">{{ recommend.desc }}</p>
         <span class="money"><span class="moneySign">¥</span>99<span class="qi">起</span></span>
       </div>
-    </div>
+    </router-link>
   </div>
 </template>
 
