@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Header :city="city" />
+    <Header />
     <Carousel :carouselList="carouselList" />
     <Icons :iconList="iconList" />
     <Recommend :recommendList="recommendList" />
@@ -26,7 +26,6 @@ export default {
 
   data() {
     return {
-      city: '',
       carouselList: [],
       iconList: [],
       recommendList: [],
@@ -39,7 +38,6 @@ export default {
         const res = await axios.get('/api/index.json')
         const data = await res.data.data
 
-        this.city = data.city
         this.carouselList = data.swiperList
         this.iconList = data.iconList
         this.recommendList = data.recommendList

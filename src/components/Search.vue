@@ -2,12 +2,16 @@
   <div class="search">
     <input type="text" v-model="keyword" placeholder="输入城市名或拼音" />
     <div class="search-content" v-show="keyword" ref="wrapper">
-      <ul>
-        <li v-for="city in list" :key="city.id" class="search-item">
-          {{ city.name }}
-        </li>
-        <li v-show="hasNoData">没有找到 😥</li>
-      </ul>
+      <div>
+        <button
+          v-for="city in list"
+          :key="city.id"
+          class="search-item"
+          @click="handleClickCity(city.name)"
+        >{{ city.name }}
+        </button>
+        <div v-show="hasNoData">没有找到 😥</div>
+      </div>
     </div>
   </div>  
 </template>
@@ -29,6 +33,13 @@ export default {
       timer: null,
       hasNoData: 0,
     }
+  },
+
+  methods: {
+    handleClickCity(city) {
+      this.$store.commit('changeCity', city)
+      this.$router.push('/')
+    },
   },
 
   watch: {
@@ -80,6 +91,10 @@ export default {
     overflow: hidden;
     background: #fff;
     .search-item {
+      display: block;
+      width: 100vw;
+      text-align: start;
+      outline: none;
       line-height: 5vw;
       border-bottom: 1px solid #fff;
       padding: 2vw;
