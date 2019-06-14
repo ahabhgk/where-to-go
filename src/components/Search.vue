@@ -1,12 +1,57 @@
 <template>
   <div class="search">
-    <input type="text" placeholder="输入城市名或拼音" />  
+    <input type="text" v-model="keyword" placeholder="输入城市名或拼音" />
+    <div class="search-content" v-show="keyword" ref="wrapper">
+      <ul>
+        <li v-for="city in list" :key="city.id" class="search-item">
+          {{ city.name }}
+        </li>
+        <li v-show="hasNoData">没有找到 😥</li>
+      </ul>
+    </div>
   </div>  
 </template>
 
 <script>
+import BScroll from 'better-scroll'
+
 export default {
   name: 'Search',
+
+  props: {
+    cities: Object,
+  },
+
+  data() {
+    return {
+      keyword: '',
+      list: [],
+      timer: null,
+      hasNoData: 0,
+    }
+  },
+
+  watch: {
+    keyword() {
+      if (this.timer) clearTimeout(this.timer) // 防抖
+      this.timer = setTimeout(() => {
+        const result = []
+        if (this.keyword) {
+          for (const letter in this.cities) {
+            result.push(...this.cities[letter].filter(city => {
+              return (city.spell.includes(this.keyword) || city.name.includes(this.keyword))
+            }))
+          }
+        }
+        this.list = result
+        this.hasNoData = !this.list.length
+      }, 400)
+    },
+  },
+
+  mounted() {
+    this.scroll = new BScroll(this.$refs.wrapper)
+  },
 }
 </script>
 
@@ -24,6 +69,23 @@ export default {
     border-radius: 1vw;
     font-size: 16px;
     text-align: center;
+  }
+  .search-content {
+    z-index: 1;
+    position: absolute;
+    top: 21vw;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    background: #fff;
+    .search-item {
+      line-height: 5vw;
+      border-bottom: 1px solid #fff;
+      padding: 2vw;
+      color: #000;
+      background: #eee;
+    }
   }
 }
 </style>
