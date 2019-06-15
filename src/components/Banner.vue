@@ -2,18 +2,26 @@
   <div class="banner" @click="handleBannerClick">
     <img :src="bannerImg" />
     <div class="banner-tit">{{ title }}</div>
-    <Gallary :imgs="gallaryImgs" v-show="showGallary" @closeGallary="handleGallaryClose" />
+    <AnimationFade>
+      <Gallary
+        :imgs="gallaryImgs"
+        v-show="showGallary"
+        @closeGallary="handleGallaryClose"
+      />
+    </AnimationFade>
   </div>
 </template>
 
 <script>
 import Gallary from '@/components/Gallary.vue'
+import AnimationFade from '@/components/AnimationFade.vue'
 
 export default {
   name: 'Banner',
 
   components: {
     Gallary,
+    AnimationFade,
   },
 
   props: {
