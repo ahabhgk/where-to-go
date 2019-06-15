@@ -22,7 +22,7 @@ export default {
       type: Array,
       default() {
         return []
-      }
+      },
     },
   },
 
@@ -33,8 +33,8 @@ export default {
           el: '.swiper-pagination',
           type: 'fraction',
         },
-        observer:true,
-        observeParents:true,
+        observer: true,
+        observeParents: true,
       },
     }
   },

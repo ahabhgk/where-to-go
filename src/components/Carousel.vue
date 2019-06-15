@@ -14,7 +14,7 @@
 <script>
 export default {
   name: 'Carousel',
-  
+
   props: {
     carouselList: Array,
   },

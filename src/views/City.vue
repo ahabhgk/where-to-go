@@ -36,8 +36,8 @@ export default {
     async getCityData() {
       try {
         const res = await axios.get('/api/city.json')
-        const data = res.data.data
-        
+        const { data } = res.data
+
         this.hotCities = data.hotCities
         this.cities = data.cities
       } catch (err) {
@@ -47,7 +47,7 @@ export default {
 
     handleListJump(letter) {
       this.letter = letter
-    }
+    },
   },
 
   mounted() {

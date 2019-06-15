@@ -28,7 +28,7 @@ export default {
   methods: {
     handleScroll() {
       console.log('解绑全局对象事件')
-      const scrollTop = document.documentElement.scrollTop
+      const { scrollTop } = document.documentElement
       if (scrollTop >= 60) {
         if (scrollTop < 200) {
           const opacity = scrollTop / 200
@@ -38,7 +38,7 @@ export default {
       } else {
         this.show = false
       }
-    }
+    },
   },
 
   activated() {

@@ -16,12 +16,12 @@ export default new Router({
     {
       path: '/city',
       name: 'city',
-      component: () => import(/* webpackChunkName: "about" */ './views/City.vue'),
+      component: () => import('./views/City.vue'),
     },
     {
       path: '/detail/:id',
       name: 'detail',
-      component: () => import(/* webpackChunkName: "about" */ './views/Detail.vue'),
+      component: () => import('./views/Detail.vue'),
     },
     // {
     //   path: '/about',

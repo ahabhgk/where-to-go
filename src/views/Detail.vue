@@ -39,10 +39,10 @@ export default {
       try {
         const res = await axios.get('/api/detail.json', {
           params: {
-            id: this.$route.params.id
-          }
+            id: this.$route.params.id,
+          },
         })
-        const data = res.data.data
+        const { data } = res.data
 
         this.sightName = data.sightName
         this.bannerImg = data.bannerImg

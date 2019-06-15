@@ -4,7 +4,7 @@
       v-for="letter in letters"
       :key="letter"
       :ref="letter"
-      @touchstart="handleTouchStart"
+      @touchstart.prevent="handleTouchStart"
       @touchmove="handleTouchMove"
       @touchend="handleTouchEnd"
       @click="handleJump"
@@ -13,7 +13,6 @@
 </template>
 
 <script>
-import { clearTimeout, setTimeout } from 'timers';
 export default {
   name: 'Alphabet',
 
@@ -37,7 +36,7 @@ export default {
   },
 
   updated() {
-    const refA = this.$refs['A'][0]
+    const refA = this.$refs.A[0]
     this.startY = refA.getBoundingClientRect().top
     this.letterHeight = refA.offsetHeight
   },
