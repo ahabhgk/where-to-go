@@ -27,6 +27,7 @@ export default {
 
   methods: {
     handleScroll() {
+      console.log('解绑全局对象事件')
       const scrollTop = document.documentElement.scrollTop
       if (scrollTop >= 60) {
         if (scrollTop < 200) {
@@ -42,7 +43,11 @@ export default {
 
   activated() {
     window.addEventListener('scroll', this.handleScroll)
-  }
+  },
+
+  deactivated() {
+    window.removeEventListener('scroll', this.handleScroll)
+  },
 }
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <swiper :options="swiperOption" v-if="showCarousel">
+    <swiper :options="swiperOption" v-if="showCarousel" ref="mySwiper">
       <!-- slides -->
       <swiper-slide v-for="item in carouselList" :key="item.id">
         <img :src="item.imgUrl" />
@@ -23,7 +23,10 @@ export default {
     return {
       swiperOption: {
         loop: true,
-        autoplay: true,
+        autoplay: {
+          disableOnInteraction: false, // 触摸滑动后 autoplay 没反应
+          delay: 1000,
+        },
         pagination: {
           el: '.swiper-pagination',
         },
@@ -34,6 +37,20 @@ export default {
   computed: {
     showCarousel() {
       return this.carouselList.length
+    },
+
+    carousel() {
+      return this.$refs.mySwiper.swiper
+    },
+  },
+
+  watch: {
+    $route(newVal) { // 解决改变路由后 autoplay 失效
+      if (newVal.name !== 'home') {
+        this.carousel.autoplay.stop()
+      } else {
+        this.carousel.autoplay.start()
+      }
     },
   },
 }

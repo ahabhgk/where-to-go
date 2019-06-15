@@ -20,7 +20,11 @@ export default {
 
   methods: {
     async getDetailData() {
-      const res = await axios.get(`/api/detail.json?id=${this.id}`) // wrong
+      const res = await axios.get('/api/detail.json', {
+        params: {
+          id: this.$route.params.id
+        }
+      }) // wrong
     },
   },
 
