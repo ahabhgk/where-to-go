@@ -58,7 +58,7 @@ export default {
     this.getHomeInfo()
   },
 
-  activated() {
+  activated() { // keep-alive 添加的
     if (this.lastCity !== this.city) {
       this.lastCity = this.city
       this.getHomeInfo()
